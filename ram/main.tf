@@ -34,7 +34,7 @@ resource "alicloud_ram_group_membership" "membership" {
 }
 
 resource "alicloud_ram_user_policy_attachment" "attach" {
-  count = "${var.use_ram_module ? length(keys(var.policy_name)): 0}"
+  count = "${var.use_ram_module ? length(var.policy_name): 0}"
   policy_name = "${lookup(var.policy_name,element(keys(var.policy_name),count.index))}"
   user_name = "${alicloud_ram_user.user.0.name}"
   policy_type = "${lookup(var.policy_type,element(keys(var.policy_type),count.index))}"
