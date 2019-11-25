@@ -96,7 +96,7 @@ module "example" {
   group_comments = "app开发用户组"
   force = true
   ak_status = "Active"
-  secret_file = "/Users/baby/accesskey.txt"//自定义文件路径
+  secret_file = ""//自定义文件路径
   policy_name = {
     policy_name1 = "AliyunOSSFullAccess"
     policy_name2 = "AliyunECSFullAccess"
@@ -120,10 +120,10 @@ module "example" {
   }
   logging_target_prefix = "log/"
   object_key = {
-    key1 = "IMG_20190815_134210.jpg"//自定义
+    key1 = ""//自定义
   }
   object_source = {
-    source1 = "/Users/xianwang/Desktop/IMG_20190815_134210.jpg"//自定义
+    source1 = ""//自定义
   }
 
   #KMS
