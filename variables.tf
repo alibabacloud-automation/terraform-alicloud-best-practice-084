@@ -223,7 +223,7 @@ variable "ak_status" {
 }
 
 variable "secret_file" {
-  default = "/Users/baby/accesskey.txt"//自定义文件路径
+  default = ""//自定义文件路径
 }
 
 variable "policy_name" {
@@ -275,14 +275,14 @@ variable "logging_target_prefix" {
 variable "object_key" {
   type = "map"
   default = {
-    key1 = "IMG_20190815_134210.jpg"//自定义
+    key1 = ""//自定义
   }
 }
 
 variable "object_source" {
   type = "map"
   default = {
-    source1 = "/Users/xianwang/Desktop/IMG_20190815_134210.jpg"//自定义
+    source1 = ""//自定义
   }
 }
 
