@@ -198,7 +198,7 @@ Only to create VPC:
 | use_vpc_module  | Wether to vpc kms sub-module.   | bool  | true  | no  |
 | tag  | A mapping of tags to assign to all resources if it can be set tag.   | map  | { app   = "客户端",owner = "bestpractice",team  = "rds",name  = "arthur" }  | no  |
 | availability_zones  | The availability zones for vpc,it can be set one or more. | map  | {   az0 = "cn-shanghai-e",az1 = "cn-shanghai-f",az2 = "cn-shanghai-g"} | no  |
-| cidr_blocks  | The cidr_block for vswitch,it can be set one or more.   | {az0 = "10.99.0.0/21",az1 = "10.99.8.0/21",az2 = "10.99.16.0/21"}  | no  |
+| cidr_blocks  | The cidr_block for vswitch,it can be set one or more. | map  | {az0 = "10.99.0.0/21",az1 = "10.99.8.0/21",az2 = "10.99.16.0/21"}  | no  |
 | vpc_name  | The name of the VPC.   | string  | "webserver"  | no  |
 | vpc_cidr  | The CIDR block for the VPC. | string  | '10.99.0.0/19'  | no |
 | slb_name  | The name of the SLB. This name must be unique within your AliCloud account, can have a maximum of 80 characters, must contain only alphanumeric characters or hyphens, such as "-","/",".","_", and must not begin or end with a hyphen. If not specified, Terraform will autogenerate a name beginning with tf-lb.  | string  | 'auto_named_slb'  | no  |
