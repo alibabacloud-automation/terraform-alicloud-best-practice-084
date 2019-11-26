@@ -187,15 +187,15 @@ Only to create VPC:
 | profile  | The profile name as set in the shared credentials file. If not set, it will be sourced from the ALICLOUD_PROFILE environment variable. | string  | ''  | no  |
 | rds_count  | The number of rds to be created.  | int  | 2  | if using rds module,it should be set.  |
 | ecs_count  | The number of ecs to be created.| int  | 2  | if using ecs module,it should be set.   |
-| use_ecs_module  | Wether to use ecs sub-module.  | bool | true | no  |
-| use_eip_module  | Wether to use eip sub-module.   | bool  | true  | no  |
-| use_kms_module  | Wether to use kms sub-module.   | bool  | true  | no  |
-| use_oss_module  | Wether to use oss sub-module.   | bool  | true  | no  |
+| use_ecs_module  | Whether to use ecs sub-module.  | bool | true | no  |
+| use_eip_module  | Whether to use eip sub-module.   | bool  | true  | no  |
+| use_kms_module  | Whether to use kms sub-module.   | bool  | true  | no  |
+| use_oss_module  | Whether to use oss sub-module.   | bool  | true  | no  |
 | which_bucket_for_uploading  | Due to which bucket for uploading,if you set 1 that means the first bucket you created.   | int  | 1  | if using oss module,it should be set  |
-| use_ram_module  | Wether to use ram sub-module.   | bool  | true  | no  |
-| use_rds_module  | Wether to use rds sub-module.   | bool  | true  | no  |
-| use_slb_module  | Wether to slb kms sub-module.   | bool  | true  | no  |
-| use_vpc_module  | Wether to vpc kms sub-module.   | bool  | true  | no  |
+| use_ram_module  | Whether to use ram sub-module.   | bool  | true  | no  |
+| use_rds_module  | Whether to use rds sub-module.   | bool  | true  | no  |
+| use_slb_module  | Whether to slb kms sub-module.   | bool  | true  | no  |
+| use_vpc_module  | Whether to vpc kms sub-module.   | bool  | true  | no  |
 | tag  | A mapping of tags to assign to all resources if it can be set tag.   | map  | { app   = "客户端",owner = "bestpractice",team  = "rds",name  = "arthur" }  | no  |
 | availability_zones  | The availability zones for vpc,it can be set one or more. | map  | {   az0 = "cn-shanghai-e",az1 = "cn-shanghai-f",az2 = "cn-shanghai-g"} | no  |
 | cidr_blocks  | The cidr_block for vswitch,it can be set one or more. | map  | {az0 = "10.99.0.0/21",az1 = "10.99.8.0/21",az2 = "10.99.16.0/21"}  | no  |
@@ -271,7 +271,7 @@ Created and maintained by xianwang.
 
 License
 ----
-Apache 2 Licensed. See LICENSE for full details.
+ Mozilla Public License 2.0. See LICENSE for full details.
 
 Reference
 ---------
