@@ -16,6 +16,7 @@ resource "alicloud_slb_attachment" "default" {
   count = "${var.use_slb_module ? 1 : (var.delete_protection == "on" ? 1 : 0)}"
   load_balancer_id    = "${alicloud_slb.slb.0.id}"
   instance_ids = "${var.instance_ids}"
+  depends_on = ["alicloud_slb.slb"]
 }
 
 resource "alicloud_slb_listener" "http" {
@@ -32,6 +33,7 @@ resource "alicloud_slb_listener" "http" {
   health_check = "on"
   health_check_connect_port = 80
   health_check_http_code = "http_2xx,http_3xx"
+  depends_on = ["alicloud_slb.slb"]
 }
 
 

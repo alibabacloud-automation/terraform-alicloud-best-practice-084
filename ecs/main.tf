@@ -7,7 +7,7 @@ resource "alicloud_instance" "instance" {
   instance_name = "${var.ecs_name}-${format(var.ecs_count_format, count.index+1)}"
   image_id = "${data.alicloud_images.images_ds.images.0.id}"
   instance_type = "${var.ecs_type}"
-  count = "${var.use_ecs_module ? var.ecs_count : 0}"
+  count = "${var.use_ecs_module ? var.ecs_count : (var.deletion_protection ? 1 : 0)}"
   security_groups = ["${alicloud_security_group.group.0.id}"]
   availability_zone = "${var.availability_zones[count.index+1]}"
   internet_charge_type = "${var.ecs_internet_charge_type}"
@@ -24,6 +24,7 @@ resource "alicloud_instance" "instance" {
 resource "alicloud_key_pair" "pair" {
   count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : (var.deletion_protection ? 1 : 0))  : 0}"
   key_name = "${var.key_name}"
+  depends_on = ["alicloud_instance.instance"]
 }
 
 resource "alicloud_key_pair_attachment" "attachment" {
