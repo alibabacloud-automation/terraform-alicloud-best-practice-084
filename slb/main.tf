@@ -13,13 +13,13 @@ resource "alicloud_slb" "slb" {
 
 
 resource "alicloud_slb_attachment" "default" {
-  count = "${var.use_slb_module ? 1 : 0}"
+  count = "${var.use_slb_module ? 1 : (var.delete_protection == "on" ? 1 : 0)}"
   load_balancer_id    = "${alicloud_slb.slb.0.id}"
   instance_ids = "${var.instance_ids}"
 }
 
 resource "alicloud_slb_listener" "http" {
-  count = "${var.use_slb_module ? 1 : 0}"
+  count = "${var.use_slb_module ? 1 : (var.delete_protection == "on" ? 1 : 0)}"
   load_balancer_id = "${alicloud_slb.slb.0.id}"
   backend_port = 80
   frontend_port = 80
