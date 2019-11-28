@@ -22,7 +22,7 @@ resource "alicloud_instance" "instance" {
 
 
 resource "alicloud_key_pair" "pair" {
-  count = "${var.use_ecs_module ? 1 : 0}"
+  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0)  : 0}"
   key_name = "${var.key_name}"
 }
 
