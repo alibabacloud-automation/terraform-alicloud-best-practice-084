@@ -34,7 +34,7 @@ resource "alicloud_key_pair_attachment" "attachment" {
 
 
 resource "alicloud_security_group" "group" {
-  count = "${var.use_ecs_module ? 1 : 0}"
+  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0) : 0}"
   name = "${var.security_group_name}"
   vpc_id = "${var.vpc_id}"
   inner_access_policy = "Accept"
@@ -42,7 +42,7 @@ resource "alicloud_security_group" "group" {
 }
 
 resource "alicloud_security_group_rule" "rdp" {
-  count             = "${var.use_ecs_module ? 1 : 0}"
+  count             = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0) : 0}"
   type              = "ingress"
   ip_protocol       = "tcp"
   nic_type          = "${var.nic_type}"
@@ -54,7 +54,7 @@ resource "alicloud_security_group_rule" "rdp" {
 }
 
 resource "alicloud_security_group_rule" "ssh" {
-  count             = "${var.use_ecs_module ? 1 : 0}"
+  count             = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0) : 0}"
   type              = "ingress"
   ip_protocol       = "tcp"
   nic_type          = "${var.nic_type}"
@@ -67,7 +67,7 @@ resource "alicloud_security_group_rule" "ssh" {
 
 
 resource "alicloud_security_group_rule" "icmp" {
-  count             = "${var.use_ecs_module ? 1 : 0}"
+  count             = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0) : 0}"
   type              = "ingress"
   ip_protocol       = "icmp"
   nic_type          = "${var.nic_type}"
