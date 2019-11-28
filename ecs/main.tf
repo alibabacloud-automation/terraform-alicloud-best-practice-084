@@ -27,7 +27,7 @@ resource "alicloud_key_pair" "pair" {
 }
 
 resource "alicloud_key_pair_attachment" "attachment" {
-  count = "${var.use_ecs_module ? 1 : 0}"
+  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0) : 0}"
   key_name     = "${alicloud_key_pair.pair.0.id}"
   instance_ids = "${alicloud_instance.instance.*.id}"
 }
