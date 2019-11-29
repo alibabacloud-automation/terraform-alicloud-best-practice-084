@@ -11,10 +11,14 @@ resource "alicloud_slb" "slb" {
   tags = "${var.tags}"
 }
 
+data "alicloud_slbs" "slb" {
+  tags = "${var.tags}"
+  depends_on = ["alicloud_slb.slb"]
+}
 
 resource "alicloud_slb_attachment" "default" {
   count = "${var.use_slb_module ? 1 : (var.delete_protection == "on" ? 1 : 0)}"
-  load_balancer_id    = "${alicloud_slb.slb.0.id}"
+  load_balancer_id    = "${data.alicloud_slbs.slb.ids[0]}"
   instance_ids = "${var.instance_ids}"
   depends_on = ["alicloud_slb.slb"]
 }
