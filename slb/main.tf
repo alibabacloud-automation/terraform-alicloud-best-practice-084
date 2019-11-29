@@ -25,7 +25,7 @@ resource "alicloud_slb_attachment" "default" {
 
 resource "alicloud_slb_listener" "http" {
   count = "${var.use_slb_module ? 1 : (var.delete_protection == "on" ? 1 : 0)}"
-  load_balancer_id = "${alicloud_slb.slb.0.id}"
+  load_balancer_id = "${data.alicloud_slbs.slb.ids[0]}"
   backend_port = 80
   frontend_port = 80
   bandwidth = -1
