@@ -13,18 +13,17 @@ resource "alicloud_slb" "slb" {
 
 data "alicloud_slbs" "slb" {
   tags = "${var.tags}"
-  depends_on = ["alicloud_slb.slb"]
 }
 
 resource "alicloud_slb_attachment" "default" {
-  count = "${var.use_slb_module ? 1 : 0 }"
-  load_balancer_id    = "${data.alicloud_slbs.slb.ids[0]}"
+  count = "${var.use_slb_module ? 1 : (var.delete_protection == "on" ? 1 : 0) }"
+  load_balancer_id    = "${data.alicloud_slbs.slb.slbs.0.id}"
   instance_ids = "${var.instance_ids}"
 }
 
 resource "alicloud_slb_listener" "http" {
-  count = "${var.use_slb_module ? 1 : 0 }"
-  load_balancer_id = "${data.alicloud_slbs.slb.ids[0]}"
+  count = "${var.use_slb_module ? 1 : (var.delete_protection == "on" ? 1 : 0) }"
+  load_balancer_id = "${data.alicloud_slbs.slb.slbs.0.id}"
   backend_port = 80
   frontend_port = 80
   bandwidth = -1

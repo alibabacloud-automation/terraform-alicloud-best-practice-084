@@ -1,3 +1,3 @@
 output "instance_ids" {
-  value = "${data.alicloud_instances.instance.ids}"
+  value = "${data.alicloud_instances.instance.instances.*.id}"
 }
