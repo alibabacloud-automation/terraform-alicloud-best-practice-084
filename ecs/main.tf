@@ -22,7 +22,7 @@ resource "alicloud_instance" "instance" {
 
 
 resource "alicloud_key_pair" "pair" {
-  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : (var.deletion_protection ? 1 : 0))  : 0}"
+  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0 )  : 0}"
   key_name = "${var.key_name}"
 }
 
@@ -32,14 +32,14 @@ data "alicloud_instances" "instance" {
 }
 
 resource "alicloud_key_pair_attachment" "attachment" {
-  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : (var.deletion_protection ? 1 : 0)) : 0}"
+  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0 ) : 0}"
   key_name     = "${alicloud_key_pair.pair.0.id}"
   instance_ids = "${data.alicloud_instances.instance.ids}"
 }
 
 
 resource "alicloud_security_group" "group" {
-  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : (var.deletion_protection ? 1 : 0)) : 0}"
+  count = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0 ) : 0}"
   name = "${var.security_group_name}"
   vpc_id = "${var.vpc_id}"
   inner_access_policy = "Accept"
@@ -47,7 +47,7 @@ resource "alicloud_security_group" "group" {
 }
 
 resource "alicloud_security_group_rule" "rdp" {
-  count             = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : (var.deletion_protection ? 1 : 0)) : 0}"
+  count             = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0 ) : 0}"
   type              = "ingress"
   ip_protocol       = "tcp"
   nic_type          = "${var.nic_type}"
@@ -59,7 +59,7 @@ resource "alicloud_security_group_rule" "rdp" {
 }
 
 resource "alicloud_security_group_rule" "ssh" {
-  count             = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : (var.deletion_protection ? 1 : 0)) : 0}"
+  count             = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0 ) : 0}"
   type              = "ingress"
   ip_protocol       = "tcp"
   nic_type          = "${var.nic_type}"
@@ -72,7 +72,7 @@ resource "alicloud_security_group_rule" "ssh" {
 
 
 resource "alicloud_security_group_rule" "icmp" {
-  count             = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : (var.deletion_protection ? 1 : 0)) : 0}"
+  count             = "${var.use_ecs_module ? (var.ecs_count != 0 ? 1 : 0 ) : 0}"
   type              = "ingress"
   ip_protocol       = "icmp"
   nic_type          = "${var.nic_type}"
