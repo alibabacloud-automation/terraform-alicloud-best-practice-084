@@ -13,6 +13,7 @@ resource "alicloud_slb" "slb" {
 
 data "alicloud_slbs" "slb" {
   tags = "${var.tags}"
+  depends_on = ["alicloud_slb.slb"]
 }
 
 resource "alicloud_slb_attachment" "default" {
