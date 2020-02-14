@@ -29,6 +29,7 @@ resource "alicloud_db_database" "db" {
   description = "${var.db_description}"
 }
 
+//高权限账号不需要授权，如果普通账号请打开
 resource "alicloud_db_account_privilege" "privilege" {
   count = "${var.account_type != "Super"  ? (var.use_rds_module ? var.rds_count : 0) : 0}"
   instance_id = "${element(alicloud_db_instance.rds.*.id,count.index)}"
