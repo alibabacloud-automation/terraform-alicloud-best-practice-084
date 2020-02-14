@@ -28,7 +28,6 @@ resource "alicloud_key_pair" "pair" {
 
 data "alicloud_instances" "instance" {
   tags = "${var.tags}"
-  depends_on = ["alicloud_instance.instance"]
 }
 
 resource "alicloud_key_pair_attachment" "attachment" {
