@@ -267,7 +267,7 @@ Only to create VPC:
 
 Authors
 -------
-Created and maintained by xianwang.
+Created and maintained by Alibaba Cloud Terraform Team(terraform@alibabacloud.com)
 
 License
 ----
