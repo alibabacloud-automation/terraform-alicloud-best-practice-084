@@ -1,6 +1,6 @@
 #Main
 variable "region" {
-  default= ""
+  default= "cn-shanghai"
 }
 
 variable "profile" {
@@ -58,8 +58,8 @@ variable "use_vpc_module" {
 variable "availability_zones" {
   type = "map"
   default = {
-    az0 = "cn-shanghai-e"
-    az1 = "cn-shanghai-f"
+    az0 = "cn-shanghai-a"
+    az1 = "cn-shanghai-b"
     az2 = "cn-shanghai-g"
   }
 }
@@ -87,11 +87,11 @@ variable "slb_name" {
 }
 
 variable "master_zone_id" {
-  default = "cn-shanghai-f"
+  default = "cn-shanghai-a"
 }
 
 variable "slave_zone_id" {
-  default = "cn-shanghai-g"
+  default = "cn-shanghai-b"
 }
 
 variable "address_type" {
@@ -150,7 +150,7 @@ variable "instance_charge_type" {
 }
 
 variable "rds_zone_id" {
-  default = "cn-shanghai-MAZ5(f,g)"
+  default = "cn-shanghai-b"
 }
 
 
@@ -203,7 +203,7 @@ variable "password_reset_required" {
 }
 
 variable "password" {
-  default = "Test1234!"
+  default = "Qwabc@1234com"
 }
 
 variable "group_name" {
@@ -223,7 +223,7 @@ variable "ak_status" {
 }
 
 variable "secret_file" {
-  default = ""//自定义文件路径
+  default = ""//自定义文件路径(必填)
 }
 
 variable "policy_name" {
@@ -257,7 +257,7 @@ variable "bucket_names" {
 variable "bucket_acls" {
   type = "map"
   default = {
-    buc0 = "private"//"private","public-read"
+    buc0 = "public-read"//"private","public-read"
   }
 }
 
