@@ -1,10 +1,11 @@
 #Main
 variable "region" {
+  description = "(Deprecated from version 1.1.0) The region used to launch this module resources."
   default= ""
 }
 
 variable "profile" {
-  description = "The profile name as set in the shared credentials file. If not set, it will be sourced from the ALICLOUD_PROFILE environment variable."
+  description = "(Deprecated from version 1.1.0) The profile name as set in the shared credentials file. If not set, it will be sourced from the ALICLOUD_PROFILE environment variable."
   default     = "default"
 }
 
