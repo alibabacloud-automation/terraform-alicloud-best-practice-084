@@ -18,9 +18,6 @@ These types of resources are supported:
 ```hcl
 module "example" {
   source = "terraform-alicloud-modules/best-practice-084/alicloud"
-  #Main
-  region = "cn-shanghai"
-  profile = "default"
 
   #resource management
   rds_count = 2
@@ -263,11 +260,77 @@ Only to create VPC:
 | security_group_name  | The name of the security group.  | string  | "ali-sg-ec-sz"  | no  |
 | nic_type  | Network type, can be either internet or intranet.  | string  | "intranet" | no  |
 
+## Notes
+From the version v1.1.0, the module has removed the following `provider` setting:
 
+```hcl
+provider "alicloud" {
+  version = ">=1.60.0"
+  region = "${var.region}"
+  profile = "${var.profile}"
+  configuration_source = "terraform-alicloud-modules/terraform-alicloud-best-practice-084"
+}
+```
+
+If you still want to use the `provider` setting to apply this module, you can specify a supported version, like 1.0.13:
+
+```hcl
+module "example" {
+  source    = "terraform-alicloud-modules/best-practice-084/alicloud"
+  version   = "1.0.13"
+  region    = "cn-shanghai"
+  rds_count = 2
+  ecs_count = 2
+  // ...
+}
+```
+
+If you want to upgrade the module to 1.1.0 or higher in-place, you can define a provider which same region with
+previous region:
+
+```hcl
+provider "alicloud" {
+  region = "cn-shanghai"
+}
+module "example" {
+  source    = "terraform-alicloud-modules/best-practice-084/alicloud"
+  rds_count = 2
+  ecs_count = 2
+  // ...
+}
+```
+or specify an alias provider with a defined region to the module using `providers`:
+
+```hcl
+provider "alicloud" {
+  region = "cn-shanghai"
+  alias  = "sh"
+}
+module "example" {
+  source    = "terraform-alicloud-modules/best-practice-084/alicloud"
+  providers = {
+    alicloud = alicloud.sh
+  }
+  rds_count = 2
+  ecs_count = 2
+  // ...
+}
+```
+
+and then run `terraform init` and `terraform apply` to make the defined provider effect to the existing module state.
+
+More details see [How to use provider in the module](https://www.terraform.io/docs/language/modules/develop/providers.html#passing-providers-explicitly)
+
+## Terraform versions
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.12.0 |
+| <a name="requirement_alicloud"></a> [alicloud](#requirement\_alicloud) | >= 1.60.0 |
 
 Authors
 -------
-Created and maintained by xianwang.
+Created and maintained by Alibaba Cloud Terraform Team(terraform@alibabacloud.com)
 
 License
 ----
