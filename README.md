@@ -152,8 +152,6 @@ module "example" {
   nic_type = "intranet"
 }
 ```
-**NOTE:** This module using AccessKey and SecretKey are from `profile` and `shared_credentials_file`.
-If you have not set them yet, please install [aliyun-cli](https://github.com/aliyun/aliyun-cli#installation) and configure it.
 
 
 ## Conditional creation
@@ -180,8 +178,6 @@ Only to create VPC:
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| region  | The region ID used to launch this module resources. If not set, it will be sourced from followed by ALICLOUD_REGION environment variable and profile | string  | ''  | no  |
-| profile  | The profile name as set in the shared credentials file. If not set, it will be sourced from the ALICLOUD_PROFILE environment variable. | string  | ''  | no  |
 | rds_count  | The number of rds to be created.  | int  | 2  | if using rds module,it should be set.  |
 | ecs_count  | The number of ecs to be created.| int  | 2  | if using ecs module,it should be set.   |
 | use_ecs_module  | Whether to use ecs sub-module.  | bool | true | no  |
